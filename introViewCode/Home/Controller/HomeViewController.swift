@@ -14,6 +14,11 @@ class HomeViewController: UIViewController {
         return vm
     }()
     
+    lazy var detailsVC: DetailsViewController = {
+        let vc = DetailsViewController()
+        return vc
+    }()
+    
     var data:  [CarModel] = []
     
     lazy var homeScreen:HomeScreen = {
@@ -36,7 +41,10 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationItem.hidesBackButton = true
+        self.navigationItem.backButtonTitle = ""
+
     }
     
     func setData(cars: CarsModel) {
@@ -45,23 +53,24 @@ class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: HomeTableViewCell? = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.indentifier, for: indexPath) as? HomeTableViewCell
-        cell?.addData(data: self.data[indexPath.row])
+        cell?.addData(data: self.data [indexPath.row])
         return cell ?? UITableViewCell()
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80.0
+        return 110
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailsVC = DetailsCarView()
-        self.viewModel.goToDetailsController()
+        self.viewModel.goToDetailsController(data: data[indexPath.row])
     }
+    
+
     
 }
 

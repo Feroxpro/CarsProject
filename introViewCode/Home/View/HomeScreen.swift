@@ -9,8 +9,6 @@ import UIKit
 
 class HomeScreen: UIView {
     
-    var data:  [CarModel] = []
-    
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +21,6 @@ class HomeScreen: UIView {
         super.init(frame: frame)
         self.addSubview()
         self.setUpContraints()
-        self.backgroundColor = .white
     }
     
     public func configTableViewProtocols(delegate: UITableViewDelegate, dataSource: UITableViewDataSource){

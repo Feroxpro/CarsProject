@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, LoginScreenProtocol {
+class ViewController: UIViewController {
     
     
     var loginScreen: LoginScreen?
@@ -42,7 +42,7 @@ class ViewController: UIViewController, LoginScreenProtocol {
 }
 
 
-extension ViewController {
+extension ViewController: LoginScreenProtocol {
     func actionLoginButton() {
             self.viewModel.validate(user: loginScreen?.loginTextField.text ?? "", pass: loginScreen?.passwordTextField.text ?? "")
         }

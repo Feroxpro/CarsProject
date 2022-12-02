@@ -14,10 +14,9 @@ class HomeViewModel {
         self.homeViewController = homeViewController
     }
     
-    var detailsVC = DetailsViewController()
-    
-    public func goToDetailsController() {
+    public func goToDetailsController(data: CarModel) {
     let detailsViewController = DetailsViewController()
-        self.homeViewController.present(detailsViewController, animated: true)
+        detailsViewController.detailsCarView.addDataDetails(data: data)
+        self.homeViewController.navigationController?.pushViewController(detailsViewController, animated: true)
     }
 }

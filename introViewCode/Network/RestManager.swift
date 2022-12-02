@@ -35,8 +35,10 @@ class RestManager  {
                         do {
                             let result = try JSONDecoder().decode(Login.self, from: response.data ?? Data())
                             UserDefaults.standard.set(result.token, forKey: "someObject")
+                            print(UserDefaults.standard.string(forKey: "someObject"))
                             if let statusCode = response.response?.statusCode {
                                 completion(MyResponse(statusCode:  statusCode))
+                                print()
                             } else {
                                 completion(MyResponse(statusCode: 0))
                             }
